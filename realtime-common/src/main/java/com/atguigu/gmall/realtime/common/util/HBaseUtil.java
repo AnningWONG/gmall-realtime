@@ -1,11 +1,13 @@
 package com.atguigu.gmall.realtime.common.util;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * ClassName: HBaseUtil
@@ -84,4 +86,47 @@ public class HBaseUtil {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * 向HBase表中put数据
+     * @param hbaseConn 连接对象
+     * @param namespace 表空间
+     * @param tableName 表名
+     * @param rowKey 主键
+     * @param family 列族
+     * @param jsonObj 要写入的json对象
+     */
+    public static void putRow(Connection hbaseConn, String namespace,
+                              String tableName, String rowKey, String family, JSONObject jsonObj){
+        TableName tableNameObj = TableName.valueOf(namespace, tableName);
+        try (Table table = hbaseConn.getTable(tableNameObj)) {
+            Put put = new Put(Bytes.toBytes(rowKey));
+            Set<String> cols = jsonObj.keySet();
+            for (String col : cols) {
+                String value = jsonObj.getString(col);
+                if (value != null){
+                    put.addColumn(Bytes.toBytes(family), Bytes.toBytes(col), Bytes.toBytes(value));
+                }
+            }
+            table.put(put);
+            System.out.println("");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // 从HBase表中删除数据
+    public static void deleteRow(Connection hbaseConn, String namespace,
+                                 String tableName, String rowKey) {
+        TableName tableNameObj = TableName.valueOf(namespace, tableName);
+        try (Table table = hbaseConn.getTable(tableNameObj)) {
+            Delete delete = new Delete(Bytes.toBytes(rowKey));
+            table.delete(delete);
+            System.out.println("删除" + namespace + "下的表" + tableName + "的");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
