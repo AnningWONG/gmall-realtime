@@ -22,7 +22,9 @@ public class HBaseUtil {
     // 获取HBase connection
     public static Connection getHBaseConnection () {
         try {
+            // 创建hadoop的配置对象
             Configuration conf = new Configuration();
+            // 通过ZooKeeper创建连接
             conf.set("hbase.zookeeper.quorum", "hadoop102,hadoop103,hadoop104");
             // 不写2181也可，默认就是2181
             // conf.set("hbase.zookeeper.property.clientPort", "2181");
@@ -50,7 +52,7 @@ public class HBaseUtil {
             return;
         }
         // JDK 1.7新特性，写在try括号里的资源会自动释放
-        // DDL通过Admin进行
+        // HBase的DDL通过Admin进行
         try (Admin admin = hbaseConn.getAdmin()) {
             TableName tableNameObj = TableName.valueOf(namespace, tableName);
             if (admin.tableExists(tableNameObj)) {
@@ -79,6 +81,7 @@ public class HBaseUtil {
                 System.out.println("要删除的" + namespace + "下的表" + tableName + "不存在");
                 return;
             }
+            // HBase删表前要先禁用表
             admin.disableTable(tableNameObj);
             admin.deleteTable(tableNameObj);
             System.out.println("删除" + namespace + "下的表" + tableName);
@@ -109,7 +112,7 @@ public class HBaseUtil {
                 }
             }
             table.put(put);
-            System.out.println("");
+            System.out.println("向" + namespace + "下的表" + tableName + "中插入行键为" + rowKey + "的数据成功");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -122,7 +125,7 @@ public class HBaseUtil {
         try (Table table = hbaseConn.getTable(tableNameObj)) {
             Delete delete = new Delete(Bytes.toBytes(rowKey));
             table.delete(delete);
-            System.out.println("删除" + namespace + "下的表" + tableName + "的");
+            System.out.println("删除" + namespace + "下的表" + tableName + "中行键为" + rowKey + "的数据成功" );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

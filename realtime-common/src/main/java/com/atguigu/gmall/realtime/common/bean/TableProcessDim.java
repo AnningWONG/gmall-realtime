@@ -17,22 +17,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TableProcessDim {
-    // 来源表名
+    // 来源表名，MySQL业务库中这张表的名字
     String sourceTable;
 
-    // 目标表名
+    // 目标表名，实时数仓（DIM层在HBase中）中这张表的名字
     String sinkTable;
 
-    // 输出字段
+    // 输出字段，实时数仓（DIM层在HBase中）中这张表都有哪些字段
     String sinkColumns;
 
-    // 数据到 hbase 的列族
+    // 实时数仓（DIM层在HBase中）中这张表的列族，生产环境下1张表只需要1个列族
     String sinkFamily;
 
-    // sink到 hbase 的时候的主键字段
+    // 实时数仓（DIM层在HBase中）中这张表的主键字段
     String sinkRowKey;
 
-    // 配置表操作类型
+    // 对于配置表操作类型，是对数仓中DIM层的表的增删改的依据
     String op;
 
 }
