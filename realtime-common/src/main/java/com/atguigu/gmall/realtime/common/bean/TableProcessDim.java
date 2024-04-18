@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
  * ClassName: TableProcessDim
  * Package: com.atguigu.gmall.realtime.common.bean
  * Description:
- *
+ *      配置表对象
  * @Author Wang Anning
  * @Create 2024/4/16 15:19
  * @Version 1.0

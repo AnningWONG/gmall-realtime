@@ -1,11 +1,8 @@
 package com.atguigu.gmall.realtime.common.util;
 
-import com.alibaba.fastjson.JSONObject;
-import com.atguigu.gmall.realtime.common.bean.TableProcessDim;
-import com.atguigu.gmall.realtime.common.constant.Constant;
 import com.google.common.base.CaseFormat;
 import org.apache.commons.beanutils.BeanUtils;
-import org.codehaus.jackson.map.util.BeanUtil;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -46,6 +43,7 @@ public class JdbcUtil {
         // 3. 解析结果集, 把数据封装到一个 List 集合中
         while (resultSet.next()) {
             // 遍历到一行数据, 把这个行数据封装到一个 T 类型的对象中
+            // ORM： Object Relation Mapping，对象关系映射，将表数据封装对象
             T t = tClass.newInstance(); // 使用反射创建一个 T 类型的对象
             // 遍历这一行的每一列数据，注意JDBC的偏移量从1开始
             for (int i = 1; i <= metaData.getColumnCount(); i++) {

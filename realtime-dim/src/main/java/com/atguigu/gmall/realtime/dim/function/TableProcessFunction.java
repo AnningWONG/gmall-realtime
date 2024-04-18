@@ -2,7 +2,6 @@ package com.atguigu.gmall.realtime.dim.function;
 
 import com.alibaba.fastjson.JSONObject;
 import com.atguigu.gmall.realtime.common.bean.TableProcessDim;
-import com.atguigu.gmall.realtime.common.constant.Constant;
 import com.atguigu.gmall.realtime.common.util.JdbcUtil;
 import org.apache.flink.api.common.state.BroadcastState;
 import org.apache.flink.api.common.state.MapStateDescriptor;
@@ -13,9 +12,6 @@ import org.apache.flink.streaming.api.functions.co.BroadcastProcessFunction;
 import org.apache.flink.util.Collector;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.*;
 
 /**
@@ -36,7 +32,9 @@ public class TableProcessFunction extends BroadcastProcessFunction<JSONObject, T
     public TableProcessFunction(MapStateDescriptor<String, TableProcessDim> mapStateDescriptor) {
         this.mapStateDescriptor = mapStateDescriptor;
     }
-    // 将配置表中的配置信息提前加载到程序中
+    // 广播流数据尚未加载到广播状态中，主流就有数据到来，主流的数据可能丢失
+    // 用Maxwell做开关？但是离线项目也需要Maxwell，不能关
+    // 所以创建open方法，将配置表中的配置信息提前加载到程序中
     @Override
     public void open(Configuration parameters) throws Exception {
         Connection conn = JdbcUtil.getMysqlConnection();

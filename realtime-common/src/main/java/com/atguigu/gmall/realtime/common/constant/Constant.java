@@ -4,7 +4,7 @@ package com.atguigu.gmall.realtime.common.constant;
  * ClassName: Constant
  * Package: com.atguigu.gmall.realtime.common.constant
  * Description:
- *
+ *      常量类
  * @Author Wang Anning
  * @Create 2024/4/16 14:09
  * @Version 1.0

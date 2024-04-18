@@ -28,6 +28,12 @@ import org.apache.hadoop.hbase.client.Connection;
  * Package: com.atguigu.gmall.realtime.dim.app
  * Description:
  *      维度层处理：执行本程序前需要启动ZooKeeper，Kafka，Maxwell，HDFS，HBase
+ *      MySQL开机自启
+ *      启动Maxwell前应该先启动Kafka
+ *      启动Kafka前必须先启动ZooKeeper
+ *      启动HBase前必须先启动ZooKeeper和HDFS
+ *
+ *      首次执行要先在HBase创建命名空间gmall
  * @Author Wang Anning
  * @Create 2024/4/16 11:41
  * @Version 1.0
