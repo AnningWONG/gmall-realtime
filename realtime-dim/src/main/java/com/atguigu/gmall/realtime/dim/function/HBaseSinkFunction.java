@@ -13,7 +13,7 @@ import org.apache.hadoop.hbase.client.Connection;
  * ClassName: HBaseSinkFunction
  * Package: com.atguigu.gmall.realtime.common.function
  * Description:
- *      将流中数据写到HBase表中
+ *      将流中数据写到HBase表中,,
  * @Author Wang Anning
  * @Create 2024/4/17 14:23
  * @Version 1.0
