@@ -32,7 +32,7 @@ public class DwdTradeCartAdd extends BaseSqlApp {
                 "    `data`['sku_id'] sku_id,\n" +
                 "\tif(`type`='insert',`data`['sku_num'],cast((cast(`data`['sku_num'] as int) - cast(`old`['sku_num'] as int)) as string)) sku_num,\n" +
                 "\tts\n" +
-                "from topic_db where `table`=`cart_info`\n" +
+                "from topic_db where `table`='cart_info'\n" +
                 "and (`type`='insert' or (`type`='update' and `old`['sku_num'] is not null \n" +
                 "and cast(`data`['sku_num'] as int) > cast(`old`['sku_num'] as int)))");
         // cartInfo.execute().print();
