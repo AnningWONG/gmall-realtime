@@ -30,7 +30,8 @@ public class FlinkSourceUtil {
                 .setTopics(topic)
                 .setGroupId(groupId)
                 // 消费起始位点：先从消费者提交的位点消费，如果没提交过位点，就从最早的偏移量开始消费
-                .setStartingOffsets(OffsetsInitializer.committedOffsets(OffsetResetStrategy.EARLIEST))
+                .setStartingOffsets(OffsetsInitializer.committedOffsets(OffsetResetStrategy.LATEST))
+                // .setStartingOffsets(OffsetsInitializer.latest()) 如果关闭了检查点，就要这样写
                 // 注意：SimpleStringSchema的deserialize方法不允许传入的字节数组为空，从Kafka中读取到空消息时会出现问题
                 // .setValueOnlyDeserializer(new SimpleStringSchema())
                 // 所以自定义一个反序列化器

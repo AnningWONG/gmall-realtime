@@ -33,7 +33,6 @@ public class DwdInteractionCommentInfo extends BaseSqlApp {
 
 
         // TODO 4. 过滤评论数据
-
         Table commentInfo = tableEnv.sqlQuery("select\n" +
                 "`data`['id'] id,\n" +
                 "`data`['user_id'] user_id,\n" +

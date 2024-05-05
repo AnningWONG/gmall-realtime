@@ -47,4 +47,19 @@ public class SqlUtil {
                 "  'value.format' = 'json'\n" +
                 ")";
     }
+    // 获取Doris连接器的连接属性
+    public static String getDorisSinkDDL (String tableName) {
+        return  " WITH (" +
+                "  'connector' = 'doris', " +
+                "  'fenodes' = '" + Constant.DORIS_FE_NODES + "', " +
+                "  'table.identifier' = '" + Constant.DORIS_DATABASE + "." + tableName + "', " +
+                "  'username' = 'root', " +
+                "  'password' = 'aaaaaa', " +
+                "  'sink.properties.format' = 'json', " +
+                "  'sink.buffer-count' = '4', " +
+                "  'sink.buffer-size' = '4086'," +
+                "  'sink.enable-2pc' = 'false', " + // 关闭两阶段提交
+                "  'sink.properties.read_json_by_line' = 'true' " +
+                ")";
+    }
 }

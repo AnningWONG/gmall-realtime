@@ -72,6 +72,7 @@ public class JdbcUtil {
     }
 
     public static void closeConnection(Connection conn) throws SQLException {
+        // 只关最外层连接即可
         if (conn != null && !conn.isClosed()) {
             conn.close();
         }
