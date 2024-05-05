@@ -1,12 +1,9 @@
 package com.atguigu.gmall.publisher.service.impl;
 
-import com.atguigu.gmall.publisher.bean.TradeProvinceOrderCt;
+import com.atguigu.gmall.publisher.bean.TradeProvinceOrderAmount;
 import com.atguigu.gmall.publisher.mapper.TradeStatsMapper;
 import com.atguigu.gmall.publisher.service.TradeStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -34,7 +31,7 @@ public class TradeStatsServiceImpl implements TradeStatsService {
     }
 
     @Override
-    public List<TradeProvinceOrderCt> getProvinceAmount(Integer date) {
+    public List<TradeProvinceOrderAmount> getProvinceAmount(Integer date) {
         return tradeStatsMapper.selectProvinceAmount(date);
     }
 }

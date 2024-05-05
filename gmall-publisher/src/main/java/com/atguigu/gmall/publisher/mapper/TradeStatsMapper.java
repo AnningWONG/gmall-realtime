@@ -1,16 +1,9 @@
 package com.atguigu.gmall.publisher.mapper;
 
-import com.atguigu.gmall.publisher.bean.TradeProvinceOrderCt;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
+import com.atguigu.gmall.publisher.bean.TradeProvinceOrderAmount;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -24,7 +17,7 @@ import java.util.List;
  */
 public interface TradeStatsMapper {
     // 获取某天总交易额
-    // 添加注解，底层封装JDBC实现
+    // 添加注解，底层MyBatis封装JDBC实现
     // @Insert("")
     // @Delete("")
     // @Update("")
@@ -42,9 +35,10 @@ public interface TradeStatsMapper {
             "from dws_trade_province_order_window\n" +
             "partition par#{date}\n" +
             "group by province_name")
-    List<TradeProvinceOrderCt> selectProvinceAmount(Integer date);
+    List<TradeProvinceOrderAmount> selectProvinceAmount(Integer date);
 }
 /*
+自己实现接口示例
 class MyC implements TradeStatsMapper{
 
     @Override
