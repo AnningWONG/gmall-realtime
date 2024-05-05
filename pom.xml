@@ -10,9 +10,11 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>realtime-common</module>
-        <module>realtime-dim</module>
+        <!--<module>realtime-dim</module>
         <module>realtime-dwd</module>
-        <module>realtime-dws</module>
+        <module>realtime-dws</module>-->
+
+
     </modules>
 
 

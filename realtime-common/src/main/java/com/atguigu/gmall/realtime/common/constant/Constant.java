@@ -44,5 +44,7 @@ public class Constant {
     public static final String TOPIC_DWD_TRADE_REFUND_PAYMENT_SUCCESS = "dwd_trade_refund_payment_success";
 
     public static final String TOPIC_DWD_USER_REGISTER = "dwd_user_register";
+    public static final String DORIS_FE_NODES = "hadoop102:7030";
+    public static final String DORIS_DATABASE = "gmall_realtime";
 
 }
