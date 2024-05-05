@@ -1,5 +1,6 @@
 package com.atguigu.gmall.publisher.controller;
 
+import com.atguigu.gmall.publisher.bean.TradeProvinceOrderAmount;
 import com.atguigu.gmall.publisher.bean.TradeProvinceOrderCt;
 import com.atguigu.gmall.publisher.service.TradeStatsService;
 import com.atguigu.gmall.publisher.util.DateFormatUtil;
@@ -52,7 +53,7 @@ public class TradeStatsController {
             date = DateFormatUtil.now();
         }
         // 调用Service方法
-        List<TradeProvinceOrderCt> provinceAmountList = tradeStatsService.getProvinceAmount(date);
+        List<TradeProvinceOrderAmount> provinceAmountList = tradeStatsService.getProvinceAmount(date);
 
 
 
@@ -81,10 +82,10 @@ public class TradeStatsController {
         resMap.put("status", 0);
         Map dataMap = new HashMap<>();
         List dataList = new ArrayList<>();
-        for (TradeProvinceOrderCt tradeProvinceOrderCt : provinceAmountList) {
+        for (TradeProvinceOrderAmount tradeProvinceOrderAmount : provinceAmountList) {
             Map map = new HashMap<>();
-            map.put("name", tradeProvinceOrderCt.getProvinceName());
-            map.put("value", tradeProvinceOrderCt.getOrderCt());
+            map.put("name", tradeProvinceOrderAmount.getProvinceName());
+            map.put("value", tradeProvinceOrderAmount.getOrderAmount());
             dataList.add(map);
         }
         dataMap.put("mapData",dataList);

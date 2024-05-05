@@ -1,7 +1,6 @@
 package com.atguigu.gmall.publisher.service;
 
-import com.atguigu.gmall.publisher.bean.TradeProvinceOrderCt;
-import com.atguigu.gmall.publisher.mapper.TradeStatsMapper;
+import com.atguigu.gmall.publisher.bean.TradeProvinceOrderAmount;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,5 +18,5 @@ public interface TradeStatsService {
     // 获取某天总交易额
     BigDecimal getGMV(Integer date);
 
-    List<TradeProvinceOrderCt> getProvinceAmount(Integer date);
+    List<TradeProvinceOrderAmount> getProvinceAmount(Integer date);
 }
