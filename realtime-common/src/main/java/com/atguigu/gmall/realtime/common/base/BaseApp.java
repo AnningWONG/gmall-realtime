@@ -34,6 +34,8 @@ public abstract class BaseApp {
         // 这个端口是用来让外部服务或者客户端通过REST API与Flink JobManager通信的
         config.set(RestOptions.PORT, port);
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment(config);
+        // StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(config);
+        // env.disableOperatorChaining();
 
         // 1.2 设置并行度
         env.setParallelism(parallelism);
@@ -43,6 +45,7 @@ public abstract class BaseApp {
         // TODO 2. 检查点相关设置
         // 2.1 开启检查点，指定检查点时间间隔，默认模式就是barrier对齐的精准一次
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
+
         CheckpointConfig checkpointConfig = env.getCheckpointConfig();
         // 2.2 设置检查点超时时间，应该长一点，因为默认检查点失败1次整个Job就会失败，此处设置为1min
         checkpointConfig.setCheckpointTimeout(60000L);
@@ -62,6 +65,7 @@ public abstract class BaseApp {
         checkpointConfig.setCheckpointStorage("hdfs://hadoop102:8020/ck" + ckAndGroupId);
         // 2.7 设置操作Hadoop用户
         System.setProperty("HADOOP_USER_NAME", "atguigu");
+
 
 
 

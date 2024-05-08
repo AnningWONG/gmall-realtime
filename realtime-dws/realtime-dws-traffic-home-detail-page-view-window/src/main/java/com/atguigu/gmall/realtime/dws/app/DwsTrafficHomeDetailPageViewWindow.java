@@ -169,10 +169,12 @@ public class DwsTrafficHomeDetailPageViewWindow extends BaseApp {
                     }
                 }
         );
-        // reducedDS.print();
+        reducedDS.print();
         // TODO 8. 将聚合结果写到Doris中
-        reducedDS
+        /*reducedDS
                 .map(new BeanToJsonStrMapFunc<>())
                 .sinkTo(FlinkSinkUtil.getDorisSink("dws_traffic_home_detail_page_view_window"));
+
+         */
     }
 }

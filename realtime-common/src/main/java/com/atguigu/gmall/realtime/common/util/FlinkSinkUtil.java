@@ -5,7 +5,6 @@ import com.atguigu.gmall.realtime.common.bean.TableProcessDwd;
 import com.atguigu.gmall.realtime.common.constant.Constant;
 import org.apache.doris.flink.cfg.DorisExecutionOptions;
 import org.apache.doris.flink.cfg.DorisOptions;
-import org.apache.doris.flink.cfg.DorisReadOptions;
 import org.apache.doris.flink.sink.DorisSink;
 import org.apache.doris.flink.sink.writer.serializer.SimpleStringSerializer;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
